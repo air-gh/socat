@@ -24,6 +24,7 @@
 #include <stdlib.h>	/* malloc(), free() */
 #include <ctype.h>	/* isdigit() */
 #include <stdio.h>	/* FILE */
+#include <stddef.h>
 #include <errno.h>	/* errno */
 #if HAVE_SYSLOG_H
 #include <syslog.h>	/* openlog(), syslog(), closelog() */
