@@ -86,6 +86,10 @@ const struct addrname addressnames[] = {
 #if WITH_INTERFACE
    { "interface",	&xioaddr_interface },
 #endif
+#if WITH_HCIINTERFACE
+   { "hciif",	&xioaddr_hciinterface },
+   { "hciinterface",	&xioaddr_hciinterface },
+#endif
 #if WITH_RAWIP
 #if (WITH_IP4 || WITH_IP6)
    { "ip",		&addr_rawip_sendto },

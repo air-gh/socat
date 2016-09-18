@@ -14,6 +14,13 @@ union xioin6_u {
    uint32_t u6_addr32[4];
 } ;
 #endif /* WITH_IP6 */
+#if WITH_HCIINTERFACE
+struct sockaddr_hci {
+   sa_family_t    hci_family;
+   unsigned short hci_dev;
+   unsigned short hci_channel;
+};
+#endif
 
 #if _WITH_SOCKET
 union sockaddr_union {
@@ -29,6 +36,9 @@ union sockaddr_union {
 #endif /* WITH_IP6 */
 #if WITH_INTERFACE
    struct sockaddr_ll ll;
+#endif
+#if WITH_HCIINTERFACE
+   struct sockaddr_hci hci;
 #endif
 } ;
 #endif /* _WITH_SOCKET */
