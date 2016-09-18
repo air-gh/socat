@@ -1,0 +1,25 @@
+socat Bluetooth HCI patch
+https://github.com/air-gh/socat
+
+socat-hci branch is supporting Bluetooth HCI address type on Linux.
+Main purpose is using HCI-USB dongle from tty interface like HCI-UART.
+Some Bluetooth protocol stack is based on HCI-UART.
+With this patch, you can use HCI-UART stack on cheap HCI-USB dongle.
+
+Usage example:
+ # service bluetooth stop                  (stop BlueZ daemon)
+ # ./socat -d -d pty,raw,echo=0 hciif:hci0 (use -d -d to find which pty is made)
+Then you can use HCI-USB interface from tty like HCI-UART.
+
+If you want to check socat activity,
+ # hciattach /dev/pts/5 any
+ # hciconfig                               (new hci interface appeared)
+ # hciconfig hci1 up
+Then new hci interface(hci1) will be appeared and can be used over tty.
+
+With this patch, you can also create long tunnel over TCP/IP
+for testing Bluetooth device from far away.
+
+This patch is under GPLv2 same as original socat.
+
+-- Air
