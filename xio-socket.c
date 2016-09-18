@@ -1060,12 +1060,12 @@ int _xioopen_dgram_sendto(/* them is already in xfd->peersa */
           uint32_t event_mask[2];
           uint16_t opcode;
       } hci_filter = { 0xffffffff, { 0xffffffff, 0xffffffff}, 0x0000 }; /* very important */
-      if (setsockopt(xfd->fd, 0, 2, &hci_filter, sizeof(hci_filter)) != 0) { /* 0 = SOL_HCI, 2 = HCI_FILTER */
-          Error1("setsockopt(SOL_HCI, HCI_FILTER, all): %s", strerror(errno));
-          return STAT_NORETRY;
-      }
       if (setsockopt(xfd->fd, 0, 1, &opt, sizeof(opt)) != 0) { /* 0 = SOL_HCI, 1 = HCI_DATA_DIR */
           Error1("setsockopt(SOL_HCI, HCI_DATA_DIR, 1): %s", strerror(errno));
+          return STAT_NORETRY;
+      }
+      if (setsockopt(xfd->fd, 0, 2, &hci_filter, sizeof(hci_filter)) != 0) { /* 0 = SOL_HCI, 2 = HCI_FILTER */
+          Error1("setsockopt(SOL_HCI, HCI_FILTER, all): %s", strerror(errno));
           return STAT_NORETRY;
       }
    }
