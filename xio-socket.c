@@ -1085,8 +1085,12 @@ int _xioopen_dgram_sendto(/* them is already in xfd->peersa */
 #if WITH_HCIINTERFACE
    if (pf == PF_BLUETOOTH) {
       if (ioctl(xfd->fd, _IOW('H', 220, int), 1 << 8) != 0) { /* 220 = HCISETRAW */
+#if 0
           Error1("ioctl(HCISETRAW, 1): %s", strerror(errno));
           return STAT_NORETRY;
+#else /* recent kernel does not permit HCISETRAW checked by strace hcidump */
+          Warn1("ioctl(HCISETRAW, 1): %s", strerror(errno));
+#endif
        }
    }
 #endif /* WITH_HCIINTERFACE */
