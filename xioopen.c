@@ -59,6 +59,10 @@ const struct addrname addressnames[] = {
 #if WITH_GOPEN
    { "gopen",	&addr_gopen },
 #endif
+#if WITH_HCIINTERFACE
+   { "hciif",	&xioaddr_hciinterface }, /* need to be sorted as alphabetical order */
+   { "hciinterface",	&xioaddr_hciinterface },
+#endif
 #if WITH_INTERFACE
    { "if",		&xioaddr_interface },
 #endif
@@ -85,10 +89,6 @@ const struct addrname addressnames[] = {
 #endif
 #if WITH_INTERFACE
    { "interface",	&xioaddr_interface },
-#endif
-#if WITH_HCIINTERFACE
-   { "hciif",	&xioaddr_hciinterface },
-   { "hciinterface",	&xioaddr_hciinterface },
 #endif
 #if WITH_RAWIP
 #if (WITH_IP4 || WITH_IP6)
