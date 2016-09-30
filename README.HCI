@@ -7,15 +7,16 @@ Some Bluetooth protocol stack is based on HCI-UART.
 With this patch, you can use HCI-UART stack on cheap HCI-USB dongle.
 
 Usage example:
- # service bluetooth stop                  (stop BlueZ daemon)
- # ./socat -d -d pty,raw,echo=0 hciif:hci0 (use -d -d to find which pty is made)
-Then you can use HCI-USB interface from tty like HCI-UART.
+ # service bluetooth stop
+ # hciconfig hci0 up
+ # ./socat pty,link=/dev/ttyBT0,raw,echo=0 hciif:hci0
+Then you can use HCI-USB interface from tty like HCI-UART at /dev/ttyBT0
 
-If you want to check socat activity,
- # hciattach /dev/pts/5 any
- # hciconfig                               (new hci interface appeared)
+If you want to check socat behavior,
+ # hciattach /dev/ttyBT0 any
+ # hciconfig
  # hciconfig hci1 up
-Then new hci interface(hci1) will be appeared and can be used over tty.
+Then new hci interface(hci1) would be appeared and could be used over tty.
 
 With this patch, you can also create long tunnel over TCP/IP
 for testing Bluetooth device from far away.
